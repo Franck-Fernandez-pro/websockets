@@ -17,9 +17,12 @@ export class MessagesService {
     return this.clientToUser[clientId];
   }
 
-  create(createMessageDto: CreateMessageDto): Message {
-    const message: Message = { ...createMessageDto };
-    this.messages.push(createMessageDto); // TODO: improve it
+  create(createMessageDto: CreateMessageDto, clientId: string): Message {
+    const message: Message = {
+      name: this.clientToUser[clientId],
+      text: createMessageDto.text,
+    };
+    this.messages.push(message);
 
     return message;
   }
